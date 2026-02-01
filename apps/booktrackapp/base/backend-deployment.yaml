@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: booktrack-backendapp
+  namespace: booktrack
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: booktrack-backendapp
+  template:
+    metadata:
+      name: booktrack-backendapp
+      labels:
+        app: booktrack-backendapp
+    spec:
+      serviceAccount: backend-sa
+      containers:
+      - name: booktrack-backendapp
+        image: mniranjanr7/booktrack-backend:12.0
+        envFrom:
+        - configMapRef:
+            name: postgre-config
+        - secretRef:
+            name: postgre-login
+        ports:
+        - name: http-port
+          containerPort: 8000
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8000
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 8000
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "200m"
+            memory: "250Mi"

@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgresql
+  namespace: booktrack
+spec:
+  replicas: 1
+  serviceName: svc-postgresql
+  selector:
+    matchLabels:
+      db: postgresql
+  template:
+    metadata:
+      name: postgresql
+      labels:
+        db: postgresql
+    spec:
+      containers:
+      - name: postgresql
+        image: postgres:16.11-alpine3.23
+        env:
+        - name: POSTGRES_PASSWORD
+          value: "password"
+        volumeMounts:
+        - name: postgre-data
+          mountPath: /var/lib/postgresql/data
+          subPath: pgdata
+        - name: postgre-initdata
+          mountPath: /docker-entrypoint-initdb.d
+      volumes:
+      - name: postgre-initdata
+        configMap:
+          name: postgre-initdb
+  volumeClaimTemplates:
+  - metadata:
+      name: postgre-data
+    spec:
+      storageClassName: sc-booktrack
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 5Gi

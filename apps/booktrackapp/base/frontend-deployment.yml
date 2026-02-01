@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: booktrack-frontend
+  namespace: booktrack
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: booktrack-frontend
+  template:
+    metadata:
+      name: booktrack-frontend
+      labels:
+        app: booktrack-frontend
+    spec:
+      containers:
+      - name: booktrack-frontend-nginx
+        image: mniranjanr7/booktrack-frontend:10.0
+        ports:
+        - name: http
+          containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
