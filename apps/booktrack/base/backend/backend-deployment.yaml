@@ -3,6 +3,9 @@ kind: Deployment
 metadata:
   name: booktrack-backendapp
   namespace: booktrack
+  labels:
+    app.kubernetes.io/name: booktrack
+    app.kubernetes.io/managed-by: argocd
 spec:
   replicas: 1
   selector:

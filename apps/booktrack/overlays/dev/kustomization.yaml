@@ -1,0 +1,8 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: booktrack
+resources:
+- ../../base/namespace/namespace.yml
+- ../../base/namespace/backend
+- ../../base/namespace/frontend
+- ../../base/namespace/database
