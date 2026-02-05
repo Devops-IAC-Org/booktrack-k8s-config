@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: booktrack
+  namespace: argocd
+spec:
+  description: BookTrack application project
+  sourceRepos:
+  - https://github.com/mniranjanr7/booktrack-k8s-config.git
+  destinations:
+  - namespace: booktrack
+    server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+  - group: ""
+    kind: Namespace
+  - group: storage.k8s.io
+    kind: StorageClass
