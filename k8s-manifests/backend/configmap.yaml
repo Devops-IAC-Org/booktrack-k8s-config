@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgre-config
+  namespace: booktrack
+data:
+  DB_HOST: svc-postgresql.booktrack.svc.cluster.local
+  DB_PORT: "5432"
+  DB_NAME: booktrack
+  LOG_LEVEL: info

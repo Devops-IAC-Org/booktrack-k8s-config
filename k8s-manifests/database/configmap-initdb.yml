@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgre-initdb
+  namespace: booktrack
+data:
+  initdb.sql: |
+    CREATE DATABASE booktrack;
+    CREATE USER booktrackuser WITH PASSWORD 'passowrd@123';
+    GRANT ALL PRIVILEGES ON DATABASE booktrack TO booktrackuser;
+    ALTER USER booktrackuser WITH SUPERUSER;
