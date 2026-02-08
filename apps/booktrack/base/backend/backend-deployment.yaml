@@ -20,7 +20,7 @@ spec:
       serviceAccount: backend-sa
       containers:
       - name: booktrack-backendapp
-        image: mniranjanr7/booktrack-backend:f2b0c53ba4a1d5184a6fc604517cc9df9e38bbbf
+        image: mniranjanr7/booktrack-backend:52cc1b1cee0259dd37bee8406c109be2a8a6aa00
         envFrom:
         - configMapRef:
             name: postgre-config
