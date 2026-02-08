@@ -20,7 +20,7 @@ spec:
       serviceAccount: backend-sa
       containers:
       - name: booktrack-backendapp
-        image: mniranjanr7/booktrack-backend:7ba4bf7297657027529ffe2c2f6fe95c5b4c397b
+        image: mniranjanr7/booktrack-backend:f2b0c53ba4a1d5184a6fc604517cc9df9e38bbbf
         envFrom:
         - configMapRef:
             name: postgre-config
@@ -29,6 +29,12 @@ spec:
         ports:
         - name: http-port
           containerPort: 8000
+        startupProbe:
+          httpGet:
+            path: /startup
+            port: 8000
+          periodSeconds: 10
+          failureThreshold: 30
         livenessProbe:
           httpGet:
             path: /healthz
