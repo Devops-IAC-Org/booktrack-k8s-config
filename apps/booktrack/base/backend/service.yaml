@@ -6,7 +6,8 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: booktrack-backendapp
+    app.kubernetes.io/name: booktrack
+    app.kubernetes.io/component: backend
   ports:
   - port: 8000
     targetPort: 8000

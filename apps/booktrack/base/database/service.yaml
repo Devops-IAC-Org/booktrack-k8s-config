@@ -5,8 +5,9 @@ metadata:
   namespace: booktrack
 spec:
   selector:
-    db: postgresql
+    app.kubernetes.io/name: booktrack
+    app.kubernetes.io/component: database
   clusterIP: None
   ports:
-    - port: 5432
-      targetPort: 5432
+  - port: 5432
+    targetPort: 5432
