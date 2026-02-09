@@ -5,17 +5,20 @@ metadata:
   namespace: booktrack
   labels:
     app.kubernetes.io/name: booktrack
+    app.kubernetes.io/component: backend
     app.kubernetes.io/managed-by: argocd
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: booktrack-backendapp
+      app.kubernetes.io/name: booktrack
+      app.kubernetes.io/component: backend
   template:
     metadata:
       name: booktrack-backendapp
       labels:
-        app: booktrack-backendapp
+        app.kubernetes.io/name: booktrack
+        app.kubernetes.io/component: backend
     spec:
       serviceAccount: backend-sa
       containers:
