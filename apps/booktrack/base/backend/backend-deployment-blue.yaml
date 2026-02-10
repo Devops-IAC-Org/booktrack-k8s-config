@@ -1,24 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: booktrack-backendapp
+  name: booktrack-backendapp-blue
   namespace: booktrack
   labels:
     app.kubernetes.io/name: booktrack
     app.kubernetes.io/component: backend
-    app.kubernetes.io/managed-by: argocd
 spec:
   replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: booktrack
       app.kubernetes.io/component: backend
+      app.kubernetes.io/version: blue
+
   template:
     metadata:
       name: booktrack-backendapp
       labels:
         app.kubernetes.io/name: booktrack
         app.kubernetes.io/component: backend
+        app.kubernetes.io/version: blue
     spec:
       serviceAccount: backend-sa
       containers:
