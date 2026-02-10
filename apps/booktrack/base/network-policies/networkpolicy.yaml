@@ -30,5 +30,5 @@ spec:
   - to:
     - namespaceSelector: {}
     ports:
-    - protocol: DNS
+    - protocol: UDP
       port: 53
