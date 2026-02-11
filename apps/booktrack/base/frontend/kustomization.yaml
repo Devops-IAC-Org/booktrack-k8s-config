@@ -5,5 +5,4 @@ resources:
 - hpa.yml
 - ingress.yml
 - service.yaml
-- svc-booktrack-backend-green.yaml
 - ingress-backend-preview.yaml
