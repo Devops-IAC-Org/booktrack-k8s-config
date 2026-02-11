@@ -18,11 +18,19 @@ spec:
             name: svc-booktrack-frontend
             port:
               number: 80
-      # Backend FastApi
+      # Backend FastApi blue
       - path: /api(/|$)(.*)
         pathType: ImplementationSpecific
         backend:
           service:
             name: svc-booktrack-backend-blue
+            port:
+              number: 8000
+      # Backend FastAPI green preview version
+      - path: /api-preview(/|$)(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: svc-booktrack-backend-green
             port:
               number: 8000
