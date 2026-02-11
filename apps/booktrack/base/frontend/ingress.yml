@@ -23,6 +23,6 @@ spec:
         pathType: ImplementationSpecific
         backend:
           service:
-            name: svc-backend
+            name: svc-booktrack-backend-blue
             port:
               number: 8000
