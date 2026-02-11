@@ -4,6 +4,7 @@ metadata:
   name: svc-booktrack-backend-green
   namespace: booktrack
 spec:
+  type: ClusterIP
   selector:
     app.kubernetes.io/name: booktrack
     app.kubernetes.io/component: backend
