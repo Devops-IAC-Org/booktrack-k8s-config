@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-booktrack-backend-preview
+  namespace: booktrack
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: booktrack.example.com
+    http:
+      paths:
+      - path: /api-preview
+        pathType: Prefix
+        backend:
+          service:
+            name: svc-booktrack-backend-green
+            port:
+              number: 80

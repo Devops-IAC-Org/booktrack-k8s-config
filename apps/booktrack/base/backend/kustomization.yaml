@@ -8,3 +8,4 @@ resources:
 - service.yaml
 - serviceaccount.yaml
 - backend-deployment-green.yaml
+- service-green-preview.yaml
