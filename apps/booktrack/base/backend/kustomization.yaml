@@ -5,7 +5,7 @@ resources:
 - configmap.yaml
 - hpa.yaml
 - secret.yaml
-- service.yaml
+- service-blue-preview.yaml
 - serviceaccount.yaml
 - backend-deployment-green.yaml
 - service-green-preview.yaml
