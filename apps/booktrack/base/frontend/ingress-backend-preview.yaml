@@ -3,6 +3,8 @@ kind: Ingress
 metadata:
   name: ingress-booktrack-backend-preview
   namespace: booktrack
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
