@@ -54,7 +54,7 @@ spec:
             memory: "250Mi"
   strategy:
     blueGreen:
-      activeService: svc-booktrack-backend-blue
-      previewService: svc-booktrack-backend-green
+      activeService: svc-booktrack-backend
+      previewService: svc-booktrack-backend-preview
       autoPromotionEnabled: true
       scaleDownDelaySeconds: 30
