@@ -23,7 +23,7 @@ spec:
         pathType: ImplementationSpecific
         backend:
           service:
-            name: svc-booktrack-backend-blue
+            name: svc-booktrack-backend
             port:
               number: 8000
       # Backend FastAPI green preview version
@@ -31,6 +31,6 @@ spec:
         pathType: ImplementationSpecific
         backend:
           service:
-            name: svc-booktrack-backend-green
+            name: svc-booktrack-backend-preview
             port:
               number: 8000
