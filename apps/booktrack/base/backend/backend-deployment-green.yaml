@@ -1,61 +1,61 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: booktrack-backendapp-green
-  namespace: booktrack
-  labels:
-    app.kubernetes.io/name: booktrack
-    app.kubernetes.io/component: backend
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: booktrack
-      app.kubernetes.io/component: backend
-      app.kubernetes.io/version: green
-  template:
-    metadata:
-      name: booktrack-backendapp
-      labels:
-        app.kubernetes.io/name: booktrack
-        app.kubernetes.io/component: backend
-        app.kubernetes.io/version: green
-    spec:
-      serviceAccount: backend-sa
-      containers:
-      - name: booktrack-backendapp
-        image: mniranjanr7/booktrack-backend:94a5641b0079d5ff8a32960b822ee572f9c9a5af
-        envFrom:
-        - configMapRef:
-            name: postgre-config
-        - secretRef:
-            name: postgre-login
-        ports:
-        - name: http-port
-          containerPort: 8000
-        startupProbe:
-          httpGet:
-            path: /startup
-            port: 8000
-          periodSeconds: 10
-          failureThreshold: 30
-        livenessProbe:
-          httpGet:
-            path: /healthz
-            port: 8000
-          initialDelaySeconds: 5
-          periodSeconds: 5
-          failureThreshold: 3
-        readinessProbe:
-          httpGet:
-            path: /readyz
-            port: 8000
-          initialDelaySeconds: 10
-          periodSeconds: 10
-        resources:
-          requests:
-            cpu: "100m"
-            memory: "128Mi"
-          limits:
-            cpu: "200m"
-            memory: "250Mi"
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: booktrack-backendapp-green
+#   namespace: booktrack
+#   labels:
+#     app.kubernetes.io/name: booktrack
+#     app.kubernetes.io/component: backend
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app.kubernetes.io/name: booktrack
+#       app.kubernetes.io/component: backend
+#       app.kubernetes.io/version: green
+#   template:
+#     metadata:
+#       name: booktrack-backendapp
+#       labels:
+#         app.kubernetes.io/name: booktrack
+#         app.kubernetes.io/component: backend
+#         app.kubernetes.io/version: green
+#     spec:
+#       serviceAccount: backend-sa
+#       containers:
+#       - name: booktrack-backendapp
+#         image: mniranjanr7/booktrack-backend:94a5641b0079d5ff8a32960b822ee572f9c9a5af
+#         envFrom:
+#         - configMapRef:
+#             name: postgre-config
+#         - secretRef:
+#             name: postgre-login
+#         ports:
+#         - name: http-port
+#           containerPort: 8000
+#         startupProbe:
+#           httpGet:
+#             path: /startup
+#             port: 8000
+#           periodSeconds: 10
+#           failureThreshold: 30
+#         livenessProbe:
+#           httpGet:
+#             path: /healthz
+#             port: 8000
+#           initialDelaySeconds: 5
+#           periodSeconds: 5
+#           failureThreshold: 3
+#         readinessProbe:
+#           httpGet:
+#             path: /readyz
+#             port: 8000
+#           initialDelaySeconds: 10
+#           periodSeconds: 10
+#         resources:
+#           requests:
+#             cpu: "100m"
+#             memory: "128Mi"
+#           limits:
+#             cpu: "200m"
+#             memory: "250Mi"

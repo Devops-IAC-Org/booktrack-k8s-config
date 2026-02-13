@@ -1,0 +1,60 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: booktrack-backend
+  namespace: booktrack
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: backend
+      app.kubernetes.io/name: booktrack
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: backend
+        app.kubernetes.io/name: booktrack
+    spec:
+      containers:
+      - name: booktrack-backend
+        image: mniranjanr7/booktrack-backend:52cc1b1cee0259dd37bee8406c109be2a8a6aa00
+        envFrom:
+        - configMapRef:
+            name: postgre-config
+        - secretRef:
+            name: postgre-login
+        ports:
+        - containerPort: 8000
+        startupProbe:
+          httpGet:
+            path: /startup
+            port: 8000
+          failureThreshold: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          failureThreshold: 10
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          failureThreshold: 10
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "200m"
+            memory: "250Mi"
+  strategy:
+    blueGreen:
+      activeService: svc-booktrack-backend-blue
+      previewService: svc-booktrack-backend-green
+      autoPromotionEnabled: true
+      scaleDownDelaySeconds: 30

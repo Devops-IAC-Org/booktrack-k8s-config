@@ -8,7 +8,7 @@ spec:
   selector:
     app.kubernetes.io/name: booktrack
     app.kubernetes.io/component: backend
-    app.kubernetes.io/version: green
+    # app.kubernetes.io/version: green
   ports:
   - port: 8000
     targetPort: 8000
