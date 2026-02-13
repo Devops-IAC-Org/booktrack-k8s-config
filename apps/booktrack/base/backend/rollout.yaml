@@ -56,5 +56,5 @@ spec:
     blueGreen:
       activeService: svc-booktrack-backend
       previewService: svc-booktrack-backend-preview
-      autoPromotionEnabled: true
+      autoPromotionEnabled: false
       scaleDownDelaySeconds: 30
