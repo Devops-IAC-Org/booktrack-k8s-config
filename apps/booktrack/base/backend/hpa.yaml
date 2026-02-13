@@ -5,9 +5,9 @@ metadata:
   namespace: booktrack
 spec:
   scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: booktrack-backendapp-blue
+    apiVersion: argoproj.io/v1alpha1
+    kind: Rollout
+    name: booktrack-backendapp
   minReplicas: 1
   maxReplicas: 3
   metrics:
