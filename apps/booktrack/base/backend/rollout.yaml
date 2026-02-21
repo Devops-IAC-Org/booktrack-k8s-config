@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: booktrack-backend
-        image: mniranjanr7/booktrack-backend:52cc1b1cee0259dd37bee8406c109be2a8a6aa00
+        image: mniranjanr7/booktrack-backend:11d3ed33091efbbb213c2e9104cb34bb5631c9b4
         envFrom:
         - configMapRef:
             name: postgre-config
