@@ -24,9 +24,8 @@ spec:
       target:
         type: AverageValue
         averageValue: 10
-
-  behaviour:
-    scaleup:
+  behavior:
+    scaleUp:
       stabilizationWindowSeconds: 0
       policies:
       - type: Percent
