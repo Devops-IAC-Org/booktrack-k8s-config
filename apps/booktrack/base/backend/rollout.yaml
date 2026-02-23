@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: booktrack-backend
-        image: mniranjanr7/booktrack-backend:11d3ed33091efbbb213c2e9104cb34bb5631c9b4
+        image: mniranjanr7/booktrack-backend:c224df0833d9fe6ef7cb98e21fe48b6540be6f37
         envFrom:
         - configMapRef:
             name: postgre-config
@@ -56,5 +56,5 @@ spec:
     blueGreen:
       activeService: svc-booktrack-backend
       previewService: svc-booktrack-backend-preview
-      autoPromotionEnabled: false
+      autoPromotionEnabled: true
       scaleDownDelaySeconds: 30
