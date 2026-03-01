@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: booktrack-backend-sm
+  namespace: monitoring
+  labels:
+    release: prometheus-stack
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: backend
+      app.kubernetes.io/name: booktrack
+  namespaceSelector:
+    matchNames:
+    - booktrack
+  endpoints:
+  - port: http
+    path: /metrics
+    interval: 15s
