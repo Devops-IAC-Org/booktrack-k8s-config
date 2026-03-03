@@ -3,6 +3,10 @@ kind: Service
 metadata:
   name: svc-booktrack-backend
   namespace: booktrack
+  labels:
+    app.kubernetes.io/name: booktrack
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/environment: dev
 spec:
   type: ClusterIP
   selector:
@@ -12,3 +16,4 @@ spec:
   ports:
   - port: 8000
     targetPort: 8000
+    name: http
