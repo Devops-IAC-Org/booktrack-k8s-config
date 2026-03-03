@@ -37,7 +37,7 @@ data:
   config.yaml: |
     rules:
       custom:
-      - seriesQuery: 'http_requests_total'
+      - seriesQuery: 'http_requests_total{namespace!=""}'
         resources:
           overrides:
             namespace:
