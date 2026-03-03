@@ -10,6 +10,7 @@ spec:
     matchLabels:
       app.kubernetes.io/component: backend
       app.kubernetes.io/name: booktrack
+      app.kubernetes.io/environment: dev
   namespaceSelector:
     matchNames:
     - booktrack
@@ -17,3 +18,8 @@ spec:
   - port: http
     path: /metrics
     interval: 15s
+    relabelings:
+    - sourceLabels: [ __meta_kubernetes_namespace ]
+      targetLabel: namespace
+    - sourceLabels: [ __meta_kubernetes_pod_name ]
+      targetLabel: pod
