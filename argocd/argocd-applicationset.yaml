@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: booktrack-applicationset
+  namespace: argocd
+spec:
+- generators:
+  - list:
+      elements:
+      - env: dev
+        cluster: https://kubernetes.default.svc
+        namespace: booktrack
+      - env: testqa
+        cluster: https://kubernetes.test.svc
+        namespace: booktrack
+      - env: Prod
+        cluster: https://kubernetes.prod.svc
+        namespace: booktrack
+template:
+  metadata:
+    name: booktrack-{{env}}
+  spec:
+    project: booktrack
+    source:
+      repoURL: https://github.com/mniranjanr7/booktrack-k8s-config.git
+      targetRevision: main
+      path: apps/booktrack/overlays/{{env}}
+    destination:
+      server: '{{cluster}}'
+      namespace: '{{namespace}}'
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
+      syncOptions:
+      - CreateNamespace=true
