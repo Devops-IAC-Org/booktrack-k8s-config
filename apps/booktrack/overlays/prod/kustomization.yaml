@@ -2,3 +2,7 @@ resources:
 - ../../base
 
 namespace: booktrack-prod
+commonLabels:
+  app: booktrack-prod
+  env: prod
+namePrefix: prod-

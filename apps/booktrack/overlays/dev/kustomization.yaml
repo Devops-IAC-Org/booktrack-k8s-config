@@ -1,4 +1,8 @@
 resources:
-  - ../../base
+- ../../base
 
 namespace: booktrack-dev
+commonLabels:
+  env: dev
+  app: booktrack-dev
+namePrefix: dev-
