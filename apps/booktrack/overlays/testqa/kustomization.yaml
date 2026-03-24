@@ -2,3 +2,7 @@ resources:
 - ../../base
 
 namespace: booktrack-test
+commonLabels:
+  app: booktrack-test
+  env: testqa
+namePrefix: testqa-
